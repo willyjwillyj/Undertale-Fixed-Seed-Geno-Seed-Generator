@@ -1,3 +1,6 @@
 .venv
 .git
 __pycache__
+build
+dist
+boardGen.spec

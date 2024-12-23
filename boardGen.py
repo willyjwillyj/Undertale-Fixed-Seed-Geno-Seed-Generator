@@ -12,12 +12,13 @@ def genBoard():
     rngGen.genProcess()
     
 
-current_version = "v1.0.0"
+current_version = "v1.0.1"
 github_connection_success = False
 newest_version = current_version
 
 try:
-    release_data = requests.get("https://github.com/willyjwillyj/Undertale-Fixed-Seed-Geno-Seed-Generator")
+    release_data = requests.get("https://api.github.com/repos/willyjwillyj/Undertale-Fixed-Seed-Geno-Seed-Generator/releases/latest")
+    print(release_data.json())
     newest_version = (release_data.json()["name"])
 except:
     pass
@@ -33,7 +34,7 @@ if github_connection_success:
         ver_label_success = tk.Label(master=root, text="You are on the latest version")
         ver_label_success.grid(row=0,column=1)
     else:
-        ver_label_failure = tk.Button(master=root, text="Update to the latest version", command=lambda:webbrowser.open("https://github.com/willyjwillyj/Undertale-Fixed-Seed-Geno-Seed-Generator", new=0, autoraise=True))
+        ver_label_failure = tk.Button(master=root, text="Update to the latest version", command=lambda:webbrowser.open("https://github.com/willyjwillyj/Undertale-Fixed-Seed-Geno-Seed-Generator/releases/latest", new=0, autoraise=True))
         ver_label_failure.grid(row=0,column=1)
 else:
     ver_label_failure = tk.Label(master=root, text="Failed to discover latest version")
